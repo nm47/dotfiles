@@ -1,0 +1,285 @@
+#
+# Variables
+#
+
+set {
+    $mod Mod4
+    $alt Mod1
+    # Home row direction keys, like vim
+    $left h
+    $down j
+    $up k
+    $right l
+    # Your preferred terminal emulator
+    $term x-terminal-emulator
+    # Your preferred browser
+    $browser firefox
+    # Your preferred application launcher
+    # Note: pass the final command to swaymsg so that the resulting window can be opened
+    # on the original workspace that the command was run on.
+    $menu rofi -show drun -m -$(swaymsg -t get_workspaces | jq -e "map(select(.focused == true).num)[0]-(.|length)" | tr -d "-")
+    $file rofi -show filebrowser -m -$(swaymsg -t get_workspaces | jq -e "map(select(.focused == true).num)[0]-(.|length)" | tr -d "-")
+    $power rofi -show powermenu -m -$(swaymsg -t get_workspaces | jq -e "map(select(.focused == true).num)[0]-(.|length)" | tr -d "-")
+}
+
+### Theming options
+#
+# Font
+font pango:Ubuntu 12
+
+### Border and gaps
+#
+default_border pixel 2
+default_floating_border pixel 2
+
+gaps inner 6
+#gaps outer 10
+
+### System theme
+#
+set $gnomeschema org.gnome.desktop.interface
+exec_always {
+    set MOZ_ENABLE_WAYLAND=true
+    xrdb -load ~/.Xresources
+}
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+output * bg ~/.config/wallpaper/wallpaper.png fill
+
+#
+# Monitor configuration:
+#
+output HDMI-A-2 transform 270 resolution 1920x1080@75Hz position 0,0
+output HDMI-A-3 resolution 2560x1440@75Hz position 1080,428
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+exec swayidle -w \
+         timeout 900 'swaylock -f -c 000000' \
+         timeout 1300 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    bindsym $mod+Return exec $term
+    
+    # Start a browser session
+    bindsym $alt+f exec $browser
+
+    # Kill focused window
+    bindsym $mod+w kill
+
+    # File browser
+    bindsym $mod+shift+f exec $file
+
+    # Power menu
+    bindsym $mod+q exec $power
+
+    # Start your launcher
+    bindsym $mod+space exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    
+    # Volume control
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+#
+# Workspaces:
+#
+workspace 1:1 output HDMI-A-2
+workspace 2:1 output HDMI-A-3 
+bindsym {
+    # Switch to workspace
+    $mod+1 exec ~/.config/sway/get_output.sh 1
+    $mod+2 exec ~/.config/sway/get_output.sh 2
+    $mod+3 exec ~/.config/sway/get_output.sh 3
+    $mod+4 exec ~/.config/sway/get_output.sh 4
+    $mod+5 exec ~/.config/sway/get_output.sh 5
+    $mod+6 exec ~/.config/sway/get_output.sh 6
+    $mod+7 exec ~/.config/sway/get_output.sh 7
+    $mod+8 exec ~/.config/sway/get_output.sh 8
+    $mod+9 exec ~/.config/sway/get_output.sh 9
+    $mod+0 exec ~/.config/sway/get_output.sh 10
+    # Move focused container to workspace
+    $mod+Shift+1 exec ~/.config/sway/move_container.sh 1
+    $mod+Shift+2 exec ~/.config/sway/move_container.sh 2
+    $mod+Shift+3 exec ~/.config/sway/move_container.sh 3
+    $mod+Shift+4 exec ~/.config/sway/move_container.sh 4
+    $mod+Shift+5 exec ~/.config/sway/move_container.sh 5
+    $mod+Shift+6 exec ~/.config/sway/move_container.sh 6
+    $mod+Shift+7 exec ~/.config/sway/move_container.sh 7
+    $mod+Shift+8 exec ~/.config/sway/move_container.sh 8
+    $mod+Shift+9 exec ~/.config/sway/move_container.sh 9
+    $mod+Shift+0 exec ~/.config/sway/move_container.sh 10
+}
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+ bindsym {
+     $mod+b splith
+     $mod+v splitv
+
+     # Switch the current container between different layout styles
+     #$mod+s layout stacking
+     #$mod+w layout tabbed
+     $mod+e layout toggle split
+
+     # Make the current focus fullscreen
+     $mod+f fullscreen
+
+     # Toggle the current focus between tiling and floating mode
+     $mod+tab floating toggle
+
+     # Swap focus between the tiling area and the floating area
+     #$mod+c focus mode_toggle
+
+     # Move focus to the parent container
+     $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    $mod+minus scratchpad show
+ }
+
+#
+### Screenshot mode:
+#
+set {
+  $screenshot "Screenshot: [s]creen [w]window [r]egion"
+
+  $screenshot-cmd ~/.config/sway/screenshot.sh
+}
+
+mode $screenshot {
+  bindsym --to-code {
+    s mode "default", exec $screenshot-cmd screen
+    w mode "default", exec $screenshot-cmd window 
+    r mode "default", exec $screenshot-cmd region 
+
+    Return mode "default"
+    Escape mode "default"
+  }
+}
+
+bindsym --to-code $mod+s mode $screenshot
+
+#
+### Screencap mode:
+#
+set {
+  $screencap "Screencap: [w]window [r]egion [s]ave "
+
+  $screencap-cmd ~/.config/sway/screencap.sh
+}
+
+mode $screencap {
+  bindsym --to-code {
+    s mode "default", exec $screencap-cmd save
+    w mode "default", exec $screencap-cmd window 
+    r mode "default", exec $screencap-cmd region 
+
+    Return mode "default"
+    Escape mode "default"
+  }
+}
+
+bindsym --to-code $mod+shift+s mode $screencap
+
+bindsym $mod+c exec grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:- | tail -n 1 | cut -d " " -f 4 | wl-copy
+
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### Theming
+#
+# Colors:
+#
+set {
+  $accent #ebdbb2
+  $red #cc241d
+  $darkgray #3c3836
+}
+
+client.focused          $accent $accent $darkgray $accent $accent
+client.focused_inactive $darkgray $darkgray $accent $darkgray $darkgray
+client.unfocused        $darkgray $darkgray $accent $darkgray $darkgray
+client.urgent           $red $red $accent $red $red
+
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    swaybar_command waybar
+}
+
+include /etc/sway/config.d/*
