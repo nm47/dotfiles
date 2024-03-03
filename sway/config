@@ -126,27 +126,27 @@ workspace 1:1 output HDMI-A-2
 workspace 2:1 output HDMI-A-3 
 bindsym {
     # Switch to workspace
-    $mod+1 exec ~/.config/sway/get_output.sh 1
-    $mod+2 exec ~/.config/sway/get_output.sh 2
-    $mod+3 exec ~/.config/sway/get_output.sh 3
-    $mod+4 exec ~/.config/sway/get_output.sh 4
-    $mod+5 exec ~/.config/sway/get_output.sh 5
-    $mod+6 exec ~/.config/sway/get_output.sh 6
-    $mod+7 exec ~/.config/sway/get_output.sh 7
-    $mod+8 exec ~/.config/sway/get_output.sh 8
-    $mod+9 exec ~/.config/sway/get_output.sh 9
-    $mod+0 exec ~/.config/sway/get_output.sh 10
+    $mod+1 exec ~/.config/sway/select_output.sh switch 1
+    $mod+2 exec ~/.config/sway/select_output.sh switch 2
+    $mod+3 exec ~/.config/sway/select_output.sh switch 3
+    $mod+4 exec ~/.config/sway/select_output.sh switch 4
+    $mod+5 exec ~/.config/sway/select_output.sh switch 5
+    $mod+6 exec ~/.config/sway/select_output.sh switch 6
+    $mod+7 exec ~/.config/sway/select_output.sh switch 7
+    $mod+8 exec ~/.config/sway/select_output.sh switch 8
+    $mod+9 exec ~/.config/sway/select_output.sh switch 9
+    $mod+0 exec ~/.config/sway/select_output.sh switch 10
     # Move focused container to workspace
-    $mod+Shift+1 exec ~/.config/sway/move_container.sh 1
-    $mod+Shift+2 exec ~/.config/sway/move_container.sh 2
-    $mod+Shift+3 exec ~/.config/sway/move_container.sh 3
-    $mod+Shift+4 exec ~/.config/sway/move_container.sh 4
-    $mod+Shift+5 exec ~/.config/sway/move_container.sh 5
-    $mod+Shift+6 exec ~/.config/sway/move_container.sh 6
-    $mod+Shift+7 exec ~/.config/sway/move_container.sh 7
-    $mod+Shift+8 exec ~/.config/sway/move_container.sh 8
-    $mod+Shift+9 exec ~/.config/sway/move_container.sh 9
-    $mod+Shift+0 exec ~/.config/sway/move_container.sh 10
+    $mod+Shift+1 exec ~/.config/sway/select_output.sh move 1
+    $mod+Shift+2 exec ~/.config/sway/select_output.sh move 2
+    $mod+Shift+3 exec ~/.config/sway/select_output.sh move 3
+    $mod+Shift+4 exec ~/.config/sway/select_output.sh move 4
+    $mod+Shift+5 exec ~/.config/sway/select_output.sh move 5
+    $mod+Shift+6 exec ~/.config/sway/select_output.sh move 6
+    $mod+Shift+7 exec ~/.config/sway/select_output.sh move 7
+    $mod+Shift+8 exec ~/.config/sway/select_output.sh move 8
+    $mod+Shift+9 exec ~/.config/sway/select_output.sh move 9
+    $mod+Shift+0 exec ~/.config/sway/select_output.sh move 10
 }
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
