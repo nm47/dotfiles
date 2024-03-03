@@ -285,5 +285,5 @@ bar {
 include /etc/sway/config.d/*
 
 # Set initial workspace for each output
-exec_always --no-startup-id "swaymsg workspace 1:1; swaymsg move workspace to output HDMI-A-3"
-exec_always --no-startup-id "swaymsg workspace 2:1; swaymsg move workspace to output HDMI-A-2"
+exec_always --no-startup-id "sleep 1.5; swaymsg workspace 2:1; swaymsg move workspace to output HDMI-A-2"
+exec_always --no-startup-id "sleep 1.5; swaymsg workspace 1:1; swaymsg move workspace to output HDMI-A-3"
