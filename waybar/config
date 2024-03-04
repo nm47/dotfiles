@@ -3,7 +3,7 @@
   "modules-right": ["pulseaudio", "backlight", "network", "battery", "clock"],
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "{:%b %d(%H:%M) 󰃰}"
+    "format": "{:%b %d [%I:%M%p] 󰃰}"
   },
   "backlight": {
     "format": "{percent}% {icon}",

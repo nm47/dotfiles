@@ -14,6 +14,7 @@ vim.opt.cursorline = true
 vim.keymap.set("n", "<leader>s", "<cmd>ClangdSwitchSourceHeader<cr>", opts)
 vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
 vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
+vim.keymap.set('n', '<leader>f', ':Files<CR>', {silent = true})
 
 -- Persistent undo - allows undoing changes after closing and reopening files
 local undodir = vim.fn.stdpath("config") .. "/undo" -- Change the path as needed
@@ -64,6 +65,8 @@ require("lazy").setup({
       require('lspconfig').pyright.setup{} -- or pylsp if you prefer
     end
   },
+  {"junegunn/fzf", run = ":call fzf#install()"},  -- This ensures the fzf binary is installed and sets up fzf
+  {"junegunn/fzf.vim"},
 })
 
 -- To enable the colorscheme and settings for 'indent-blankline.nvim' plugin

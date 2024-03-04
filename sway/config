@@ -51,8 +51,8 @@ output * bg ~/.config/wallpaper.png fill
 #
 # Monitor configuration:
 #
-output HDMI-A-2 transform 270 resolution 1920x1080@75Hz position 0,0
-output HDMI-A-3 resolution 2560x1440@75Hz position 1080,428
+output HDMI-A-1 transform 270 resolution 1920x1080@75Hz position 0,0
+output HDMI-A-2 resolution 2560x1440@75Hz position 1080,428
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -122,8 +122,8 @@ exec swayidle -w \
 #
 # Workspaces:
 #
+workspace 2:1 output HDMI-A-1 
 workspace 1:1 output HDMI-A-2
-workspace 2:1 output HDMI-A-3 
 bindsym {
     # Switch to workspace
     $mod+1 exec ~/.config/sway/select_output.sh switch 1
