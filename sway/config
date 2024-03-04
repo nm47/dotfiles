@@ -122,8 +122,8 @@ exec swayidle -w \
 #
 # Workspaces:
 #
-workspace 2:1 output HDMI-A-1 
-workspace 1:1 output HDMI-A-2
+workspace HDMI-A-1:1 output HDMI-A-1 
+workspace HDMI-A-2:1 output HDMI-A-2
 bindsym {
     # Switch to workspace
     $mod+1 exec ~/.config/sway/select_output.sh switch 1
@@ -285,5 +285,8 @@ bar {
 include /etc/sway/config.d/*
 
 # Set initial workspace for each output
-exec_always --no-startup-id "sleep 1.5; swaymsg workspace 2:1; swaymsg move workspace to output HDMI-A-2"
-exec_always --no-startup-id "sleep 1.5; swaymsg workspace 1:1; swaymsg move workspace to output HDMI-A-3"
+exec swaymsg focus output HDMI-A-2
+exec --no-startup-id " ~/.config/sway/select_output.sh switch 1"
+
+exec swaymsg workspace "HDMI-A-1:1"; swaymsg move workspace to output HDMI-A-1
+
