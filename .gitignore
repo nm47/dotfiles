@@ -2,3 +2,5 @@ nvim/lazyvim.json
 nvim/lazy-lock.json
 nvim/undo/
 nvim/swap/
+zsh/*
+!zsh/.zshrc
