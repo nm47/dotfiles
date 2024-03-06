@@ -49,14 +49,9 @@ zle -N zle-line-init
 # Key bindings for fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey '^R' fzf-history-widget
-
-# [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-# plug "zsh-users/zsh-autosuggestions"
-# plug "zap-zsh/supercharge"
-# plug "zsh-users/zsh-syntax-highlighting"
-# 
-# # Load and initialise completion system
-# autoload -Uz compinit
-# compinit
-
 zstyle ':completion:*' menu select
+
+# Edit commands in nvim
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^E' edit-command-line
