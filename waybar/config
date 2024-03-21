@@ -1,8 +1,9 @@
+// vim: set filetype=json:
 {
   "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
   "modules-right": ["pulseaudio", "backlight", "network", "battery", "clock"],
   "clock": {
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "",
     "format": "{:%b %d [%I:%M%p] 󰃰}"
   },
   "backlight": {
@@ -54,5 +55,6 @@
   "sway/workspaces": {
     "disable-scroll": true,
     "format": "{name}",
+    "alphabetical_sort": true
   }
 }
