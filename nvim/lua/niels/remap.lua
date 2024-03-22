@@ -14,7 +14,7 @@ vim.keymap.set('n', '<M-S-j>', ':resize +2<CR>', {silent = true})
 vim.keymap.set('n', '<M-S-k>', ':resize -2<CR>', {silent = true})
 vim.keymap.set('n', '<M-S-l>', ':vertical resize -2<CR>', {silent = true})
 
-vim.keymap.set('n', '<leader>tt', ':18Lexplore<CR>', {silent = true})
+vim.keymap.set('n', '<leader>tt', ':18Lex %:p:h<CR>', {silent = true})
 vim.keymap.set('n', '<leader>=', '<C-w>=', {silent = true})
 
 -- Move lines up and down with Alt+j and Alt+k
