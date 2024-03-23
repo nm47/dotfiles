@@ -25,6 +25,7 @@ require("lazy").setup({
       dependencies = { 'nvim-lua/plenary.nvim' }
   },
   {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+  { "nvim-treesitter/nvim-treesitter-textobjects" },
   {"williamboman/mason.nvim"},
   {"williamboman/mason-lspconfig.nvim"},
   {'neovim/nvim-lspconfig'},

@@ -14,13 +14,12 @@ vim.keymap.set('n', '<C-M-h>', ':vertical resize +2<CR>', {silent = true})
 vim.keymap.set('n', '<C-M-j>', ':resize +2<CR>', {silent = true})
 vim.keymap.set('n', '<C-M-k>', ':resize -2<CR>', {silent = true})
 vim.keymap.set('n', '<C-M-l>', ':vertical resize -2<CR>', {silent = true})
-vim.keymap.set('n', '<leader>=', '<C-w>=', {silent = true})
 
 -- Move lines up and down with Alt+j and Alt+k
-vim.api.nvim_set_keymap('n', '<A-j>', ':m .+1<CR>==', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<A-k>', ':m .-2<CR>==', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<M-j>', ':m .+1<CR>==', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<M-k>', ':m .-2<CR>==', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<M-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<M-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
 -- H and L movements
 vim.api.nvim_set_keymap('n', 'H', '^', {noremap = true, silent = true})
@@ -35,11 +34,14 @@ vim.api.nvim_set_keymap('n', '<C-b>', '<C-b>zz', {noremap = true, silent = true}
 local tree_state = false
 function ToggleNetrw()
     if toggle_state then
-        vim.cmd(':13Lex %:p:h')
-    else
         vim.cmd(':Lex')
+    else
+        vim.cmd(':13Lex %:p:h')
     end
     toggle_state = not toggle_state
 end
 
-vim.keymap.set('n', '<leader>tt', ':lua ToggleNetrw()<CR>', { noremap = true, silent = true})
+vim.keymap.set('n', '<leader>t', ':lua ToggleNetrw()<CR>', { noremap = true, silent = true})
+
+vim.api.nvim_set_keymap('n', '}', ':TSTextobjectGotoNextStart @function.outer<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '{', ':TSTextobjectGotoPreviousStart @function.outer<CR>', { noremap = true, silent = true })
