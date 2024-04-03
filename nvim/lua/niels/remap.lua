@@ -5,7 +5,7 @@ vim.keymap.set("n", "<leader>s", "<cmd>ClangdSwitchSourceHeader<cr>", opts)
 vim.keymap.set('n', '<leader>n', ':set number | set relativenumber!<CR>', { noremap = true, silent = true })
 
 -- Modify buffers
-vim.keymap.set('n', '<leader>v', '<C-w>v', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>v', '<C-w>v<C-w>l', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true, silent = true })
