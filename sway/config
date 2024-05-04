@@ -46,7 +46,8 @@ set $gnomeschema org.gnome.desktop.interface
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/.config/wallpaper.png fill
+output HDMI-A-1 bg ~/.config/sway/wallpapers/Enchantments-Horz.jpg fill
+output HDMI-A-2 bg ~/.config/sway/wallpapers/Enchantments.jpg fill
 
 #
 # Monitor configuration:

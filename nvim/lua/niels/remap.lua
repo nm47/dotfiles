@@ -36,7 +36,7 @@ function ToggleNetrw()
     if toggle_state then
         vim.cmd(':Lex')
     else
-        vim.cmd(':13Lex %:p:h')
+        vim.cmd(':15Lex %:p:h')
     end
     toggle_state = not toggle_state
 end
