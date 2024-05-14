@@ -3,13 +3,6 @@ return {
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'make',
-      cond = function()
-        return vim.fn.executable('make') == 1
-      end,
-    },
   },
   config = function()
     local telescope = require('telescope')
@@ -32,14 +25,6 @@ return {
         selection_strategy = 'reset',
         sorting_strategy = 'descending',
         layout_strategy = 'horizontal',
-      },
-      extensions = {
-        fzf = {
-          fuzzy = true,
-          override_generic_sorter = false,
-          override_file_sorter = true,
-          case_mode = "smart_case",
-        }
       }
     })
     require('telescope').setup(opts)
