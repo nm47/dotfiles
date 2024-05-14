@@ -12,6 +12,19 @@ return {
       lspconfig.rust_analyzer.setup {}
       lspconfig.lua_ls.setup {}
 
+      -- Your diagnostics toggle function
+      vim.g.diagnostics_visible = true
+      function _G.toggle_diagnostics()
+        if vim.g.diagnostics_visible then
+          vim.g.diagnostics_visible = false
+          vim.diagnostic.hide(nil,0)
+        else
+          vim.g.diagnostics_visible = true
+          vim.diagnostic.show(nil,0)
+        end
+      end
+      vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>d', ':call v:lua.toggle_diagnostics()<CR>', {silent=true, noremap=true})
+
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -34,3 +47,4 @@ return {
     end,
   },
 }
+

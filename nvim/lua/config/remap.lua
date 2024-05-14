@@ -27,7 +27,7 @@ vim.api.nvim_set_keymap('n', '<C-f>', '<C-f>zz', {noremap = true, silent = true}
 vim.api.nvim_set_keymap('n', '<C-b>', '<C-b>zz', {noremap = true, silent = true})
 
 -- netrw toggle
-local tree_state = false
+local toggle_state = false
 function ToggleNetrw()
     if toggle_state then
         vim.cmd(':Lex')
