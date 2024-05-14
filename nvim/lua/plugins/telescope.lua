@@ -27,7 +27,6 @@ return {
         layout_strategy = 'horizontal',
       }
     })
-    require('telescope').setup(opts)
 
     -- Autocmd to apply custom highlight settings at startup
     vim.cmd [[
@@ -38,6 +37,7 @@ return {
         autocmd VimEnter * highlight TelescopeResultsBorder guifg=#ebdbb2
         autocmd VimEnter * highlight TelescopePreviewBorder guifg=#ebdbb2
         autocmd VimEnter * highlight TelescopeTitle guifg=#ebdbb2
+        autocmd VimEnter * highlight TelescopePromptCounter guifg=#ebdbb2
         autocmd VimEnter * highlight TelescopePromptTitle guifg=#ebdbb2
         autocmd VimEnter * highlight TelescopeResultsTitle guifg=#ebdbb2
         autocmd VimEnter * highlight TelescopePreviewTitle guifg=#ebdbb2
@@ -48,7 +48,26 @@ return {
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<leader>f', builtin.find_files, {})
     vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
-    vim.keymap.set('n', '<leader>gs', builtin.grep_string, {})
+    vim.keymap.set('n', '<leader>gr', builtin.grep_string, {})
+    vim.keymap.set('n', '<leader>gc', builtin.git_commits, {})
+    vim.keymap.set('n', '<leader>gd', function() git_diff() end)
+
+    function _G.git_diff(opts)
+      local pickers = require "telescope.pickers"
+      local finders = require "telescope.finders"
+      local previewers = require "telescope.previewers"
+      local conf = require("telescope.config").values
+
+      local default_branch = vim.fn.system('git symbolic-ref refs/remotes/origin/HEAD --short')
+      default_branch = default_branch:gsub("%s+", "")
+      local list = vim.fn.systemlist('git diff --relative --name-only ' .. default_branch)
+
+      pickers.new(opts, {
+        prompt_title = "Changed Files",
+        finder = finders.new_table { results = list },
+        sorter = conf.generic_sorter(opts),
+        previewer = previewers.vim_buffer_cat.new({}) 
+      }):find()
+    end
   end
 }
-
