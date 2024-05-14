@@ -10,10 +10,6 @@ vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-M-h>', ':vertical resize +2<CR>', {silent = true})
-vim.keymap.set('n', '<C-M-j>', ':resize +2<CR>', {silent = true})
-vim.keymap.set('n', '<C-M-k>', ':resize -2<CR>', {silent = true})
-vim.keymap.set('n', '<C-M-l>', ':vertical resize -2<CR>', {silent = true})
 
 -- Move lines up and down with Alt+j and Alt+k
 vim.api.nvim_set_keymap('n', '<M-j>', ':m .+1<CR>==', { noremap = true, silent = true })
@@ -42,6 +38,3 @@ function ToggleNetrw()
 end
 
 vim.keymap.set('n', '<leader>t', ':lua ToggleNetrw()<CR>', { noremap = true, silent = true})
-
-vim.api.nvim_set_keymap('n', '}', ':TSTextobjectGotoNextStart @function.outer<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '{', ':TSTextobjectGotoPreviousStart @function.outer<CR>', { noremap = true, silent = true })
