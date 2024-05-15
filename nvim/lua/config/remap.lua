@@ -30,16 +30,3 @@ vim.api.nvim_set_keymap('n', '<C-b>', '<C-b>zz', {noremap = true, silent = true}
 vim.api.nvim_set_keymap('i', '<F1>', '<Esc>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<F1>', '<Esc>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<F1>', '<Esc>', {noremap = true, silent = true})
-
--- netrw toggle
-local toggle_state = false
-function ToggleNetrw()
-    if toggle_state then
-        vim.cmd(':Lex')
-    else
-        vim.cmd(':15Lex %:p:h')
-    end
-    toggle_state = not toggle_state
-end
-
-vim.keymap.set('n', '<leader>t', ':lua ToggleNetrw()<CR>', { noremap = true, silent = true})
